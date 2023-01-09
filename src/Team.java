@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
-    List<Player> players;
-    String coachName, stadiumName;
+    private List<Player> players;
+    private String coachName, stadiumName;
 
     public Team(List<Player> players,String coachName,String stadiumName){
         this.players = players;
@@ -59,9 +59,6 @@ public class Team {
             return false;
 
         //assume that a coach cannot coach 2 different teams
-        if(this.getCoachName() == ((Team) obj).getCoachName())
-            return true;
-        else
-            return  false;
+        return this.getCoachName() == ((Team) obj).getCoachName();
     }
 }

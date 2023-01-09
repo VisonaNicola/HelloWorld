@@ -44,5 +44,11 @@ public class Main {
 
         //print ranking
         System.out.println(r.printRanking());
+
+        Ranking r2 = new Ranking();
+        r2.modifyScore(t1,8);
+
+        //print an empty rank
+        System.out.println(r2.printRanking());
     }
 }
