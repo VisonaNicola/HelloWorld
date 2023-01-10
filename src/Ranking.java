@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +33,7 @@ public class Ranking {
      * @return a String containing all the pairs teamName - score if the HashMap is non-empty, a warning message otherwise
      */
     public String printRanking(){
+
         String info="";
         if(ranking.size()!=0){
             for (Map.Entry<Team,Integer> set:ranking.entrySet()) {

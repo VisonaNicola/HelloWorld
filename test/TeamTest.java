@@ -1,8 +1,23 @@
-public class Main {
-    public static void main(String[] args) {
+import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+public class TeamTest {
+    @Test
+    public void rolePlayerOfATeamChangedTest(){
+        Team t = new Team("coach1","stadium1","Milan");
+        Player p = new Player("Pinco","Pallino", Player.Role.Defender);
+        t.addPlayer(p);
+        //p.setRole(Player.Role.Striker);
+        t.modifyRole(p.getName(),p.getSurname(), Player.Role.Striker);
+        assertEquals(Player.Role.Striker,p.getRole());
+    }
+
+    @Test
+    public void fullTeamTest(){
         //Create first team
-        int[] scheme = {4,4,2};
+        int[] scheme = {3,5,2};
         Team t1 = new Team("coach1","stadium1","Juventus",scheme);
         //add players
         t1.addPlayer(new Player("a","a", Player.Role.Defender));
@@ -30,32 +45,21 @@ public class Main {
         t1.addPlayer(new Player("q","a", Player.Role.Goalkeeper));
         t1.addPlayer(new Player("r","a", Player.Role.Goalkeeper));
 
-
-        System.out.println("All players:\n"+t1.printTeam());
-        System.out.println("\n\n");
-        System.out.println("Titled players:\n"+t1.printTitledTeam());
-
-
-        //change role of a player
         t1.modifyRole("j","a", Player.Role.Goalkeeper);
+        assertEquals("Scheme: [3,5,2]\nWith the current scheme and set of players it's not possible to create a set of titled players", t1.printTitledTeam());
+    }
 
-        //change scheme
-        int[] newScheme = {3,5,2};
-        t1.setTeamScheme(newScheme);
-        System.out.println("\n\n");
-        System.out.println("Titled players:\n"+t1.printTitledTeam());
+    @Test
+    public void negativeNumberInNewScheme(){
+        int[] scheme = {3,5,-2};
+        Team t1 = new Team("coach1","stadium1","Juventus");
+        assertFalse(t1.setTeamScheme(scheme));
+    }
 
-
-        //change role of a player
-        t1.modifyRole("j","a", Player.Role.Midfielder);
-
-        System.out.println("\n\n");
-        System.out.println("Titled players:\n"+t1.printTitledTeam());
-
-        //try set invalid scheme
-        System.out.println("\n\n");
-        newScheme = new int[] {5,5,5};
-        System.out.println("The new scheme is valid? "+t1.setTeamScheme(newScheme));
-        System.out.println("Titled players:\n"+t1.printTitledTeam());
+    @Test
+    public void invalidNewScheme(){
+        int[] scheme = {5,5,5};
+        Team t1 = new Team("coach1","stadium1","Juventus");
+        assertFalse(t1.setTeamScheme(scheme));
     }
 }
