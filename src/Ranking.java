@@ -1,58 +1,57 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * The Ranking class represent a ranking of teams.
+ * Every Ranking is characterised by an HashMap in which every key is a team and the corresponding value is the score that that team has in the ranking.
+ */
 public class Ranking {
-    private List<TeamAndRanking> ranking;
+    private HashMap<Team,Integer> ranking;
 
+    /**
+     * Create a new Ranking object.
+     */
     public Ranking(){
-        this.ranking = new ArrayList<>();
+        this.ranking = new HashMap<>();
     }
-    public void addTeam(Team t, int score){
-        ranking.add(new TeamAndRanking(t,score));
+
+    /**
+     * Add a team to the ranking
+     * @param team - the team that is added to the ranking
+     * @param score - the score of that team in the ranking
+     * @return true if the team is added successfully in the ranking, false if the team was already in the ranking.
+     */
+    public boolean addTeam(Team team, int score){
+        if(ranking.containsKey(team))
+            return false;
+        ranking.put(team,score);
+        return true;
     }
+
+    /**
+     * Create a String containing all the teams and their respective score.
+     * @return a String containing all the pairs teamName - score if the HashMap is non-empty, a warning message otherwise
+     */
     public String printRanking(){
         String info="";
         if(ranking.size()!=0){
-            for (TeamAndRanking teamandrank: ranking) {
-                info+=teamandrank.toString();
+            for (Map.Entry<Team,Integer> set:ranking.entrySet()) {
+                info+= set.getKey().getTeamName()+" " + set.getValue()+"\n";
             }
         }else
             info="This ranking has no teams in it, try to add one with addTeam() method.";
 
         return info;
     }
-    public void modifyScore(Team t, int newScore){
-        for (TeamAndRanking teamAndRanking : ranking) {
-            if (t.equals(teamAndRanking.getTeam()))
-                teamAndRanking.modifyScore(newScore);
-        }
-    }
 
-    //private class to manage teams as a team-score pair
-    private class TeamAndRanking{
-        Team team;
-        int score;
-        private TeamAndRanking(Team team, int score){
-            this.team = team;
-            this.score = score;
-        }
-
-        private Team getTeam() {
-            return team;
-        }
-
-        private void setTeam(Team team) {
-            this.team = team;
-        }
-
-        public String toString(){
-            return team.toString() + " " + score+"\n";
-        }
-
-
-        private void modifyScore(int newScore){
-            this.score = newScore;
-        }
+    /**
+     * modify the score of a team
+     * @param team - the team of which we want to modify the score
+     * @param newScore - the new score value
+     */
+    public void modifyScore(Team team, int newScore){
+        ranking.put(team,newScore);
     }
 }
 
