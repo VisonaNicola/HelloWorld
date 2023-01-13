@@ -12,10 +12,10 @@ public class Team {
     /**
      * Create a new team specifying the list of players.
      * The default scheme is [3,5,2] but any array of 3 element in which the sum of the 3 elements is 10 will be accepted.
-     * @param players - an HashSet that contains all the players that will be part of the team
-     * @param coachName - the name of the coach
-     * @param stadiumName - the name of the stadium in which the team plays
-     * @param teamName - the name of the team
+     * @param players an HashSet that contains all the players that will be part of the team
+     * @param coachName the name of the coach
+     * @param stadiumName the name of the stadium in which the team plays
+     * @param teamName the name of the team
      */
     public Team(HashSet<Player> players,String coachName,String stadiumName,String teamName){
         this.players = players;
@@ -29,9 +29,9 @@ public class Team {
      * Create a new team.
      * The set of players is not specified, so this method creates an empty set.
      * The default scheme is [3,5,2] but any array of 3 element in which the sum of the 3 elements is 10 will be accepted.
-     * @param coachName - the name of the coach
-     * @param stadiumName - the name of the stadium in which the team plays
-     * @param teamName - the name of the team
+     * @param coachName the name of the coach
+     * @param stadiumName the name of the stadium in which the team plays
+     * @param teamName the name of the team
      */
     public Team(String coachName,String stadiumName,String teamName){
         this.players = new HashSet<>();
@@ -44,11 +44,11 @@ public class Team {
 
     /**
      * Create a new team specifying the list of players.
-     * @param players - an HashSet that contains all the players that will be part of the team
-     * @param coachName - the name of the coach
-     * @param stadiumName - the name of the stadium in which the team plays
-     * @param teamName - the name of the team
-     * @param teamScheme - the scheme that the team will use in a match
+     * @param players an HashSet that contains all the players that will be part of the team
+     * @param coachName the name of the coach
+     * @param stadiumName the name of the stadium in which the team plays
+     * @param teamName the name of the team
+     * @param teamScheme the scheme that the team will use in a match
      */
     public Team(HashSet<Player> players,String coachName,String stadiumName,String teamName, int[] teamScheme){
         this.players = players;
@@ -62,10 +62,10 @@ public class Team {
     /**
      * Create a new team.
      * The set of players is not specified, so this method creates an empty set.
-     * @param coachName - the name of the coach
-     * @param stadiumName - the name of the stadium in which the team plays
-     * @param teamName - the name of the team
-     * @param teamScheme - the scheme that the team will use in a match
+     * @param coachName the name of the coach
+     * @param stadiumName the name of the stadium in which the team plays
+     * @param teamName the name of the team
+     * @param teamScheme the scheme that the team will use in a match
      */
     public Team(String coachName,String stadiumName,String teamName,int[] teamScheme){
         this.players = new HashSet<>();
@@ -96,7 +96,7 @@ public class Team {
 
     /**
      * Set a new list of players that overwrites the old one.
-     * @param players - the new set of players
+     * @param players the new set of players
      */
     public void setPlayers(HashSet<Player> players) {
         for (Player p: players) {
@@ -114,7 +114,7 @@ public class Team {
     }
     /**
      * Set the name of the coach.
-     * @param coachName - the new name of coach
+     * @param coachName the new name of coach
      */
     public void setCoachName(String coachName) {
         this.coachName = coachName;
@@ -128,7 +128,7 @@ public class Team {
     }
     /**
      * Set the name of the stadium.
-     * @param stadiumName - the new name of stadium
+     * @param stadiumName the new name of stadium
      */
     public void setStadiumName(String stadiumName) {
         this.stadiumName = stadiumName;
@@ -143,7 +143,7 @@ public class Team {
 
     /**
      * set a new scheme for the team
-     * @param newScheme - the new scheme for the team must be an array of length 3 and the sum of the 3 elements must be 10
+     * @param newScheme the new scheme for the team must be an array of length 3 and the sum of the 3 elements must be 10
      * @return true if all criteria are met, false otherwise
      */
     public boolean setTeamScheme(int[] newScheme){
@@ -167,7 +167,7 @@ public class Team {
 
     /**
      * Add a new player to the team.
-     * @param player - the new player
+     * @param player the new player
      */
     public void addPlayer(Player player){
         player.setTeam(this);
@@ -181,7 +181,7 @@ public class Team {
 
     /**
      * remove a player from the team
-     * @param player - the player that will be removed from the team
+     * @param player the player that will be removed from the team
      * @return true, if the player was in the set of players, false otherwise
      */
     public boolean removePlayer(Player player){
@@ -192,9 +192,9 @@ public class Team {
 
     /**
      * Modify the role of a player in the team
-     * @param name - name of the player that we want to modify the role
-     * @param surname - surname of the player that we want to modify the role
-     * @param newRole - new role for the player
+     * @param name name of the player that we want to modify the role
+     * @param surname surname of the player that we want to modify the role
+     * @param newRole new role for the player
      * @return true if the player is in the team (so that the role can be modified), false otherwise
      */
     public boolean modifyRole(String name, String surname, Player.Role newRole){
@@ -295,6 +295,7 @@ public class Team {
 
         //assume that 2 teams cannot have the same name
         return this.getTeamName() == ((Team) obj).getTeamName();
+        //return new CompareTeamsByName().compare(this,(Team) obj)==0;
     }
 
     @Override

@@ -17,8 +17,8 @@ public class Ranking {
 
     /**
      * Add a team to the ranking
-     * @param team - the team that is added to the ranking
-     * @param score - the score of that team in the ranking
+     * @param team the team that is added to the ranking
+     * @param score the score of that team in the ranking
      * @return true if the team is added successfully in the ranking, false if the team was already in the ranking.
      */
     public boolean addTeam(Team team, int score){
@@ -47,8 +47,8 @@ public class Ranking {
 
     /**
      * modify the score of a team
-     * @param team - the team of which we want to modify the score
-     * @param newScore - the new score value
+     * @param team the team of which we want to modify the score
+     * @param newScore the new score value
      */
     public void modifyScore(Team team, int newScore){
         ranking.put(team,newScore);

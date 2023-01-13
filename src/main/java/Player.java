@@ -3,8 +3,9 @@ import java.util.Objects;
 /**
  * The Player class represent a person that plays football. Every player is characterized by its name, surname and role in the team.
  */
-public class Player {
+public class Player implements Comparable<Player>{
     private String name, surname;
+
     public enum Role{
         Goalkeeper,
         Defender,
@@ -16,9 +17,9 @@ public class Player {
     private Team team = null;
     /**
      * Create a new player
-     * @param name - name of the player
-     * @param surname - surname of the player
-     * @param role - role of the player (the possible roles are Goalkeeper, Defender, Midfielder and Striker)
+     * @param name name of the player
+     * @param surname surname of the player
+     * @param role role of the player (the possible roles are: Goalkeeper, Defender, Midfielder and Striker)
      */
     public Player(String name,String surname,Role role) {
         this.name = name;
@@ -28,7 +29,7 @@ public class Player {
 
     /**
      * Save the team for which the player plays, so that if the role is changed it is possible to update the titled player set
-     * @param team - the team for which the player plays
+     * @param team the team for which the player plays
      */
     public void setTeam(Team team){
         this.team=team;
@@ -44,7 +45,7 @@ public class Player {
 
     /**
      * Set a new name for a player.
-     * @param name - the new name for the player
+     * @param name the new name for the player
      */
     public void setName(String name) {
         this.name = name;
@@ -58,7 +59,7 @@ public class Player {
     }
     /**
      * Set a new surname for a player.
-     * @param surname - the new surname for the player
+     * @param surname the new surname for the player
      */
     public void setSurname(String surname) {
         this.surname = surname;
@@ -72,7 +73,7 @@ public class Player {
     }
     /**
      * Set a new role for a player.
-     * @param role - the new role for the player
+     * @param role the new role for the player
      */
     public void setRole(Role role) {
         this.role = role;
@@ -97,5 +98,21 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, surname, role);
+    }
+
+    @Override
+    public int compareTo(Player p2){
+        if(p2==null)
+            return -1;
+
+        int compareSurname = getSurname().compareTo(p2.getSurname());
+        if(compareSurname!=0)
+            return compareSurname;
+
+        int compareName = getName().compareTo(p2.getName());
+        if(compareName!=0)
+            return compareName;
+
+        return getRole().compareTo(p2.getRole());
     }
 }

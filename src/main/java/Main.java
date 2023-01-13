@@ -31,6 +31,13 @@ public class Main {
         t1.addPlayer(new Player("r","a", Player.Role.Goalkeeper));
 
 
+        Team t2 = new Team("coach2","stadium2","Juventus",scheme);
+        /*Ranking r = new Ranking();
+        r.addTeam(t1,0);
+        r.addTeam(t2,2);
+        System.out.println(r.printRanking());*/
+
+
         System.out.println("All players:\n"+t1.printTeam());
         System.out.println("\n\n");
         System.out.println("Titled players:\n"+t1.printTitledTeam());
@@ -57,5 +64,8 @@ public class Main {
         newScheme = new int[] {5,5,5};
         System.out.println("The new scheme is valid? "+t1.setTeamScheme(newScheme));
         System.out.println("Titled players:\n"+t1.printTitledTeam());
+
+
+
     }
 }
